@@ -1,0 +1,12 @@
+export const ADMIN_ROUTE = '/admin'
+export const LOGIN_ROUTE = '/login'
+export const REGISTRATION_ROUTE = '/registration'
+export const SERVICE_ROUTE = '/'
+export const ORDER_ROUTE = '/order'
+export const FOOD_ROUTE = '/food'
+
+export const STUDENT_RUOTE = '/student'
+export const TEACHER_ROUTE = '/teacher'
+export const COURSE_ROUTE = '/course'
+export const FACULTY_ROUTE = '/faculty'
+export const GROUP_ROUTE = '/group'
