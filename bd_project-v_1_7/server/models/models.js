@@ -56,7 +56,7 @@ const Teacher = sequelize.define("Teacher", {
   Gender: { type: DataTypes.STRING },
   Adress: { type: DataTypes.STRING },
   Email: { type: DataTypes.STRING, unique: true },
-  Phone_Number: { type: DataTypes.INTEGER },
+  Phone_Number: { type: DataTypes.STRING },
 });
 const Course = sequelize.define("Course", {
   Course_ID: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },

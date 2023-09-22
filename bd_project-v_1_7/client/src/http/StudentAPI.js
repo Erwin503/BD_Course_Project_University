@@ -35,7 +35,7 @@ export const createStudent = async (student) => {
 };
 
 export const fetchStudents = async (Group_ID, page, limit = 5) => {
-  const { data } = await $host.get("api/food", {
+  const { data } = await $host.get("api/student", {
     params: {
       Group_ID,
       page,

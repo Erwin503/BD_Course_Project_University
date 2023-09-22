@@ -11,11 +11,11 @@ const {
 } = require("../controllers/groupController");
 const checkRole = require("../middleware/checkRoleMiddleware");
 
-router.post("/", create);
+router.post("/", checkRole("ADMIN"), create);
 router.get("/:Group_ID", getOne);
 router.get("/", getAll);
-router.delete("/", deleteItem);
+router.delete("/", checkRole("ADMIN"), deleteItem);
 router.put("/:Group_ID", updateItem);
 
 module.exports = router;
-// , checkRole("ADMIN")
+// 

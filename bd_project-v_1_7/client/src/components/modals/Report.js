@@ -9,17 +9,11 @@ import { Context } from "../../index";
 import { observer } from "mobx-react-lite";
 
 const ReportInfo = observer(() => {
-  const { food } = useContext(Context);
   const { student } = useContext(Context);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  function catName(foodCatId) {
-    const result = food.categories.filter((cat) => cat.id == foodCatId);
-    return result[0].name;
-  }
 
   function groupName(studentGroupId) {
     const result = student.Groups.filter(
@@ -27,10 +21,11 @@ const ReportInfo = observer(() => {
     );
     return result[0].Group_Name;
   }
-
-  function restName(foodRestId) {
-    const result = food.restaurants.filter((rest) => rest.id == foodRestId);
-    return result[0].name;
+  function facName(studentFacId) {
+    const result = student.Faculties.filter(
+      (faculty) => faculty.Faculty_ID == studentFacId
+    );
+    return result[0].Faculty_Name;
   }
 
   return (
@@ -55,53 +50,73 @@ const ReportInfo = observer(() => {
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Ресторан</th>
-                  <th>Категория</th>
-                  <th>Название</th>
-                  <th>Описание</th>
-                  <th>Цена</th>
+                  <th>Имя</th>
+                  <th>Фамилия</th>
+                  <th>Пол</th>
+                  <th>Адрес</th>
+                  <th>Email</th>
+                  <th>Группа</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>{}</td>
-                  {console.log(food.foods[0])}
-                  {/* <td>{groupName(student.Students[0].GroupGroupID)}</td>
-                  <td>{student.Students[0].Adress}</td>
-                  <td>{student.Students[0].First_Name}</td>
-                  <td>{student.Students[0].Last_Name}</td>
-                  <td>{student.Students[0].Gender}</td> */}
-                </tr>
-                {/* {student.Students.map((student_inline) => (
-                  <tr
-                    key={student_inline.Student_ID}
-                  >
-                    {console.log(student_inline.Student_ID)}
+                {student.Students.map((student_inline) => (
+                  <tr key={student_inline.Student_ID}>
                     <td>{student_inline.Student_ID}</td>
-                    <td>{restName(student_inline.GroupGroupID)}</td>
-                    <td>{catName(student_inline.Adress)}</td>
                     <td>{student_inline.First_Name}</td>
                     <td>{student_inline.Last_Name}</td>
                     <td>{student_inline.Gender}</td>
-                    
+                    <td>{student_inline.Adress}</td>
+                    <td>{student_inline.Email}</td>
+                    <td>{groupName(student_inline.GroupGroupID)}</td>
                   </tr>
-                ))} */}
-                {/* {food.foods.map((food) => (
-                  <tr
-                    key={food.id}
-                  >
-                    <td>{food.id}</td>
-                    <td>{restName(food.restaurantId)}</td>
-                    <td>{catName(food.categoryId)}</td>
-                    <td>{food.name}</td>
-                    <td>{food.description}</td>
-                    <td>{food.price}</td>
-                    
-                  </tr>
-                ))} */}
+                ))}
               </tbody>
             </Table>
-            <h2>Рестораны</h2>
+            <h2>Преподаватели</h2>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Имя</th>
+                  <th>Фамилия</th>
+                  <th>Пол</th>
+                  <th>Адрес</th>
+                  <th>Email</th>
+                  <th>Факультет</th>
+                </tr>
+              </thead>
+              <tbody>
+                {student.Teachers.map((teacher_inline) => (
+                  <tr key={teacher_inline.Teacher_ID}>
+                    <td>{teacher_inline.Teacher_ID}</td>
+                    <td>{teacher_inline.First_Name}</td>
+                    <td>{teacher_inline.Last_Name}</td>
+                    <td>{teacher_inline.Gender}</td>
+                    <td>{teacher_inline.Adress}</td>
+                    <td>{teacher_inline.Email}</td>
+                    <td>{facName(teacher_inline.FacultyFacultyID)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+            {/* <h2>Курсы</h2>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Название</th>
+                </tr>
+              </thead>
+              <tbody>
+                {student.Courses.map((course) => (
+                  <tr key={course.Course_ID}>
+                    <td>{course.Course_ID}</td>
+                    <td>{course.Course_Name}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table> */}
+            <h2>Группы</h2>
             <Table striped bordered hover>
               <thead>
                 <tr>
@@ -118,19 +133,23 @@ const ReportInfo = observer(() => {
                 ))}
               </tbody>
             </Table>
-            <h2>Категории блюд</h2>
+            <h2>Факультеты</h2>
             <Table striped bordered hover>
               <thead>
                 <tr>
                   <th>ID</th>
                   <th>Название</th>
+                  <th>Адрес</th>
+                  <th>Имя декана</th>
                 </tr>
               </thead>
               <tbody>
-                {food.categories.map((category) => (
-                  <tr key={category.id}>
-                    <td>{category.id}</td>
-                    <td>{category.name}</td>
+                {student.Faculties.map((faculty) => (
+                  <tr key={faculty.Faculty_ID}>
+                    <td>{faculty.Faculty_ID}</td>
+                    <td>{faculty.Faculty_Name}</td>
+                    <td>{faculty.Faculty_Adress}</td>
+                    <td>{faculty.Faculty_Dekan_Name}</td>
                   </tr>
                 ))}
               </tbody>
