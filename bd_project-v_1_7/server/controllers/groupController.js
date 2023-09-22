@@ -33,11 +33,10 @@ class GroupController {
     const { Group_Name } = req.body;
 
     try {
-      // Найти категорию для удаления
       const group = await Group.findOne({ where: { Group_Name } });
 
       if (!group) {
-        return res.status(404).json({ error: "Факультет не найден" });
+        return res.status(404).json({ error: "Группа не найден" });
       }
       await Group.destroy({ where: { Group_Name: group.Group_Name } });
 

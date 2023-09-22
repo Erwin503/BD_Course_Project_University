@@ -125,12 +125,12 @@ const ReportInfo = observer(() => {
                 </tr>
               </thead>
               <tbody>
-                {student.Groups.map((group) => (
-                  <tr key={group.Group_ID}>
-                    <td>{group.Group_ID}</td>
-                    <td>{group.Group_Name}</td>
-                  </tr>
-                ))}
+                {student.Groups.map((group) => 
+                    <tr key={group.Group_ID}>
+                      <td>{group.Group_ID}</td>
+                      <td>{group.Group_Name}</td>
+                    </tr>
+                )}
               </tbody>
             </Table>
             <h2>Факультеты</h2>
